@@ -386,7 +386,8 @@ html.lenis, html.lenis body { height: auto; }
 
 /* ---------- 8. LA COLLEZIONE (HOME): SCAFFALE ORIZZONTALE ---------- */
 .collection {
-  background: radial-gradient(ellipse at 50% 35%, #6B4935 0%, #4A3021 55%, #3A2519 100%);
+  background-color: #4A3021;
+  background-image: radial-gradient(ellipse at 50% 35%, #6B4935 0%, #4A3021 55%, #3A2519 100%);
   color: var(--light);
   --btn-hover-bg: var(--light); --btn-hover-ink: var(--night);
 }
@@ -720,17 +721,17 @@ html.scheda-aperta { overflow: hidden; }
   .hero__meta { margin-top: 12px; font-size: 12px; }
 
   /* La boccetta scende nella parte centrale-bassa */
-  .hero__bottles { inset: 32svh 0 12svh 0; height: 48svh; }
+  .hero__bottles { inset: 30svh 0 18svh 0; height: 44svh; }
 
   /* La piramide diventa una riga compatta in basso; l'indice si nasconde */
-  .hero__aside { top: auto; bottom: 64px; left: var(--gutter); right: var(--gutter); width: auto; gap: 0; }
+  .hero__aside { top: auto; bottom: 50px; left: var(--gutter); right: var(--gutter); width: auto; gap: 0; }
   .hero__index { display: none; }
   .hero__pyramid .eyebrow { display: none; }
   .hero__pyramid .pyramid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .hero__pyramid .pyramid > div { border: 0; padding: 0; }
   .hero__pyramid .pyramid dd { font-size: .95rem; line-height: 1.2; }
 
-  .hero__bottom { bottom: 20px; grid-template-columns: 1fr auto; font-size: 10px; }
+  .hero__bottom { bottom: 16px; grid-template-columns: 1fr auto; font-size: 10px; }
   .hero__hint { flex-direction: row; gap: 8px; }
   .hero__hint-line { display: none; }
 

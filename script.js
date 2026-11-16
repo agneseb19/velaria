@@ -245,6 +245,29 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 const header = document.querySelector('.header');
 const heroSezione = document.querySelector('.hero');
 
+// Colore di fondo della pagina e delle barre di Safari (meta theme-color).
+// Seguono la sezione visibile: così su iPhone non compaiono strisce di un altro
+// colore sopra/sotto la hero (es. giallo o crema mentre si guarda Rosa Velata).
+const metaTema = document.querySelector('meta[name="theme-color"]');
+let ultimoFondo = '';
+function coloreDi(el) {
+  // risale finché trova un elemento con un colore di fondo vero (non trasparente)
+  while (el && el !== document.body && el !== document.documentElement) {
+    const c = getComputedStyle(el).backgroundColor;
+    if (c && c !== 'transparent' && !c.startsWith('rgba(0, 0, 0, 0')) return c;
+    el = el.parentElement;
+  }
+  return '#F4EDE3';
+}
+function aggiornaFondo(sezione) {
+  const c = coloreDi(sezione);
+  if (c === ultimoFondo) return;
+  ultimoFondo = c;
+  document.documentElement.style.backgroundColor = c;
+  document.body.style.backgroundColor = c;
+  metaTema?.setAttribute('content', c);
+}
+
 // Guarda cosa c'è sotto l'header: se è una sezione scura, il testo diventa chiaro
 function aggiornaHeader() {
   const x = window.innerWidth / 2;
@@ -255,6 +278,7 @@ function aggiornaHeader() {
     .find((el) => el && !header.contains(el));
 
   header.classList.toggle('is-light', sotto?.dataset.theme === 'dark');
+  aggiornaFondo(sotto);
 
   // Dopo la hero (o subito, nelle altre pagine) l'header prende un fondo sfocato
   const soglia = heroSezione
@@ -364,6 +388,9 @@ function iniziaHero() {
     aggiornaHeader();
   }
 
+  // Con movimento ridotto lo sfondo cambia con una transizione CSS: a fine transizione aggiorniamo il fondo pagina
+  stage.addEventListener('transitionend', () => aggiornaFondo(stage));
+
   // --- Stato iniziale ---
   gsap.set('.ing', { xPercent: -50, yPercent: -50 });   // gli ingredienti si posizionano dal loro centro
   gsap.set(pallino, { y: yPallino(0) });
@@ -373,7 +400,7 @@ function iniziaHero() {
     gsap.set(insiemi[0].ingredienti, { opacity: 1, x: 0, rotation: 0, y: (i, el) => deriva(el) });
     gsap.set([...insiemi[1].ingredienti, ...insiemi[2].ingredienti], { opacity: 0 });
     gsap.set(boccette, { opacity: (i) => (i === 0 ? 1 : 0) });
-    gsap.set(insiemi.flatMap((s) => s.righe), { yPercent: 110 });   // tutte le righe sotto la maschera
+    gsap.set(insiemi.flatMap((s) => s.righe), { yPercent: 135 });   // tutte le righe sotto la maschera
     gsap.set([insiemi[1].piramide, insiemi[2].piramide], { autoAlpha: 0 });
     gsap.set(stage, { backgroundColor: HERO[0].sfondo, '--ink': HERO[0].testo });
 
@@ -387,6 +414,9 @@ function iniziaHero() {
         invalidateOnRefresh: true,  // ricalcola le distanze se cambia la finestra
         onUpdate: (self) => impostaAttivo(Math.min(2, Math.floor(self.progress * 3))),
       },
+      // a ogni fotogramma dell'animazione (anche mentre "rallenta" dopo lo scroll)
+      // il fondo della pagina segue il colore che sta sfumando
+      onUpdate: () => { if (window.scrollY < heroSezione.offsetTop + heroSezione.offsetHeight) aggiornaFondo(stage); },
     });
 
     // L'invito "Scorri per scoprire" sparisce appena inizi a scorrere
@@ -426,11 +456,11 @@ function iniziaHero() {
       // ---- Titolo: righe che escono verso l'alto / entrano dal basso ----
       if (fase.esce !== null) {
         tl.fromTo(insieme.righe, { yPercent: 0 },
-          { yPercent: -110, stagger: 0.04, duration: 0.26, ease: 'power2.in', immediateRender: false },
+          { yPercent: -135, stagger: 0.04, duration: 0.26, ease: 'power2.in', immediateRender: false },
           fase.esce);
       }
       if (fase.entra !== null) {
-        tl.fromTo(insieme.righe, { yPercent: 110 },
+        tl.fromTo(insieme.righe, { yPercent: 135 },
           { yPercent: 0, stagger: 0.06, duration: 0.32, ease: 'power3.out', immediateRender: false },
           fase.entra + 0.16);
       }

@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Colore delle barre di Safari/Chrome su telefono: lo aggiorna script.js mentre scorri -->
+  <meta name="theme-color" content="#E8D49A">
   <title>Velaria — Atelier di profumi, Firenze</title>
   <!-- Icona della scheda: una "V" in serif, disegnata direttamente qui (nessun file in più) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232B1D14'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' text-anchor='middle' fill='%23E8D49A'%3EV%3C/text%3E%3C/svg%3E">
@@ -21,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261116b">
 </head>
 <body>
 
@@ -103,16 +105,16 @@
         <!-- LIVELLO 4: ingredienti DAVANTI alla boccetta (più grandi e nitidi) -->
         <div class="hero__layer hero__layer--front" aria-hidden="true">
           <!-- Alba di Bergamotto -->
-          <div class="ing ing--front" data-set="0" data-m style="--x:64%;--y:73%;--w:15vw;--r:-16deg;--xm:80%;--ym:70%;--wm:30vw;--fd:7s;--fdl:-2s"><div class="ing__float"><img data-img="bergamotto-fetta" alt=""></div></div>
+          <div class="ing ing--front" data-set="0" data-m style="--x:64%;--y:73%;--w:15vw;--r:-16deg;--xm:80%;--ym:63%;--wm:30vw;--fd:7s;--fdl:-2s"><div class="ing__float"><img data-img="bergamotto-fetta" alt=""></div></div>
           <div class="ing ing--front" data-set="0" style="--x:63%;--y:24%;--w:8vw;--r:12deg;--fd:6s;--fdl:-1s"><div class="ing__float"><img data-img="bergamotto-scorza" alt=""></div></div>
           <div class="ing ing--front" data-set="0" data-m style="--x:36%;--y:80%;--w:12vw;--r:6deg;--xm:18%;--ym:50%;--wm:24vw;--fd:8s;--fdl:-4s"><div class="ing__float"><img data-img="zagara" alt=""></div></div>
           <!-- Rosa Velata -->
-          <div class="ing ing--front" data-set="1" data-m style="--x:65%;--y:72%;--w:14vw;--r:0deg;--xm:80%;--ym:70%;--wm:28vw;--fd:8s;--fdl:-3s"><div class="ing__float"><img data-img="peonia" alt=""></div></div>
+          <div class="ing ing--front" data-set="1" data-m style="--x:65%;--y:72%;--w:14vw;--r:0deg;--xm:80%;--ym:63%;--wm:28vw;--fd:8s;--fdl:-3s"><div class="ing__float"><img data-img="peonia" alt=""></div></div>
           <div class="ing ing--front" data-set="1" style="--x:37%;--y:78%;--w:10vw;--r:-8deg;--fd:7s;--fdl:-5s"><div class="ing__float"><img data-img="rosa-petali" alt=""></div></div>
           <div class="ing ing--front" data-set="1" data-m style="--x:64%;--y:24%;--w:10vw;--r:18deg;--xm:18%;--ym:50%;--wm:22vw;--fd:6s;--fdl:-2s"><div class="ing__float"><img data-img="pepe-rosa" alt=""></div></div>
           <!-- Ambra Notturna -->
           <div class="ing ing--front" data-set="2" data-m style="--x:35%;--y:76%;--w:15vw;--r:-20deg;--xm:18%;--ym:50%;--wm:28vw;--fd:8s;--fdl:-1s"><div class="ing__float"><img data-img="oud" alt=""></div></div>
-          <div class="ing ing--front" data-set="2" data-m style="--x:66%;--y:70%;--w:12vw;--r:10deg;--xm:80%;--ym:70%;--wm:26vw;--fd:7s;--fdl:-4s"><div class="ing__float"><img data-img="ambra-resina" alt=""></div></div>
+          <div class="ing ing--front" data-set="2" data-m style="--x:66%;--y:70%;--w:12vw;--r:10deg;--xm:80%;--ym:63%;--wm:26vw;--fd:7s;--fdl:-4s"><div class="ing__float"><img data-img="ambra-resina" alt=""></div></div>
           <div class="ing ing--front" data-set="2" style="--x:63%;--y:22%;--w:13vw;--r:-28deg;--fd:6s;--fdl:-3s"><div class="ing__float"><img data-img="vaniglia" alt=""></div></div>
         </div>
 
@@ -348,7 +350,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="profumi.js"></script>
-  <script src="script.js"></script>
+  <script src="profumi.js?v=20261116b"></script>
+  <script src="script.js?v=20261116b"></script>
 </body>
 </html>
