@@ -137,9 +137,9 @@ html.lenis, html.lenis body { height: auto; }
 /* Sopra una sezione scura, il testo dell'header diventa chiaro */
 .header.is-light { color: var(--light); --btn-hover-bg: var(--light); --btn-hover-ink: var(--night); }
 /* Dopo la hero l'header prende un leggero fondo sfocato per restare leggibile */
-/* Linea fissa sottilissima in fondo allo schermo, dello stesso colore della sezione:
-   serve a Safari su iPhone per colorare la barra in basso (non si vede). */
-.bordo-basso { position: fixed; z-index: 49; left: 0; right: 0; bottom: 0; height: 2px; background-color: var(--fondo-pagina, transparent); pointer-events: none; }
+/* Fascia fissa in fondo allo schermo (16px), dello stesso colore della sezione:
+   Safari su iPhone la usa per colorare la barra in basso. Più sottile viene ignorata. */
+.bordo-basso { position: fixed; z-index: 49; left: 0; right: 0; bottom: 0; height: 16px; background-color: var(--fondo-pagina, transparent); pointer-events: none; }
 
 .header__logo {
   font-family: var(--serif); font-weight: 500; font-size: 22px;
