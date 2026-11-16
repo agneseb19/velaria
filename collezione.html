@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La collezione — Velaria, Firenze</title>
+  <meta name="description" content="Dodici profumi in tre collezioni: Luce, Giardino e Notte. Velaria, atelier di profumi a Firenze dal 1924.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232B1D14'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' text-anchor='middle' fill='%23E8D49A'%3EV%3C/text%3E%3C/svg%3E">
+
+  <!-- Come nella home: segnala che JavaScript è attivo -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () { document.documentElement.classList.add('is-ready'); }, 3000);
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pagina-collezione">
+
+  <!-- HEADER (uguale alla home, ma i link portano alle sezioni di index.html) -->
+  <header class="header">
+    <a href="index.html" class="header__logo" aria-label="Velaria, vai alla home">VELARIA</a>
+
+    <nav class="header__nav" aria-label="Menu principale">
+      <a href="collezione.html" aria-current="page">Collezione</a>
+      <a href="index.html#note">Note</a>
+      <a href="index.html#atelier">Atelier</a>
+      <a href="#boutique">Boutique</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="#catalogo" class="btn btn--outline">Acquista</a>
+      <button class="header__toggle" aria-expanded="false" aria-controls="menu-mobile">Menu</button>
+    </div>
+  </header>
+
+  <div class="menu-mobile" id="menu-mobile" data-theme="light">
+    <a href="collezione.html">Collezione</a>
+    <a href="index.html#note">Note</a>
+    <a href="index.html#atelier">Atelier</a>
+    <a href="#boutique">Boutique</a>
+  </div>
+
+  <main data-theme="light">
+    <!-- =========================================================
+         INTRODUZIONE E FILTRI
+         ========================================================= -->
+    <section class="catalogo-intro">
+      <div class="container">
+        <p class="eyebrow">La collezione</p>
+        <h1 class="catalogo-intro__title">Dodici luoghi, <em>tre momenti del giorno.</em></h1>
+        <p class="section-lead">Ogni profumo Velaria porta il nome di un luogo italiano. Li abbiamo divisi in tre collezioni, come le ore di una giornata: la luce del mattino, il giardino del pomeriggio, la notte.</p>
+
+        <!-- Filtri: i numeri tra parentesi li calcola script.js -->
+        <div class="filtri" role="group" aria-label="Filtra per collezione" data-filtri>
+          <button type="button" class="filtro is-active" data-filtro="tutti" aria-pressed="true">Tutti <span></span></button>
+          <button type="button" class="filtro" data-filtro="luce" aria-pressed="false">Luce <span></span></button>
+          <button type="button" class="filtro" data-filtro="giardino" aria-pressed="false">Giardino <span></span></button>
+          <button type="button" class="filtro" data-filtro="notte" aria-pressed="false">Notte <span></span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         GRIGLIA DEI PROFUMI — creata da script.js leggendo profumi.js.
+         Ogni carta è un link "#id-del-profumo" che apre la scheda.
+         ========================================================= -->
+    <section class="catalogo" id="catalogo" aria-label="Tutti i profumi">
+      <div class="container">
+        <div class="catalogo__grid" data-catalogo></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       SCHEDA PRODOTTO — pannello che scivola sopra la pagina.
+       Il contenuto viene riempito da script.js col profumo scelto.
+       data-lenis-prevent: dentro il pannello lo scroll è quello normale.
+       ========================================================= -->
+  <div class="scheda" id="scheda" hidden>
+    <div class="scheda__velo" data-chiudi></div>
+    <div class="scheda__pannello" role="dialog" aria-modal="true" aria-labelledby="scheda-nome" data-lenis-prevent tabindex="-1">
+      <button type="button" class="scheda__chiudi" data-chiudi aria-label="Chiudi la scheda">Chiudi <span aria-hidden="true">✕</span></button>
+      <div class="scheda__contenuto" data-scheda></div>
+    </div>
+  </div>
+
+  <!-- FOOTER (uguale alla home) -->
+  <footer class="footer" id="boutique" data-theme="dark">
+    <div class="container">
+      <p class="footer__claim">Ogni profumo è un luogo.</p>
+
+      <div class="footer__cols">
+        <div>
+          <p class="eyebrow">Boutique</p>
+          <p>Via Maggio 21 R<br>50125 Firenze</p>
+        </div>
+        <div>
+          <p class="eyebrow">Orari</p>
+          <p>Martedì – Sabato<br>10:00 – 19:00</p>
+        </div>
+        <div>
+          <p class="eyebrow">Contatti</p>
+          <p><a href="mailto:atelier@velaria.it">atelier@velaria.it</a><br><a href="tel:+390550001924">+39 055 000 1924</a></p>
+        </div>
+        <div>
+          <p class="eyebrow">Seguici</p>
+          <p><a href="#" aria-label="Instagram di Velaria (link di esempio)">Instagram — @velaria.firenze</a></p>
+        </div>
+      </div>
+
+      <p class="footer__wordmark" aria-hidden="true">VELARIA</p>
+
+      <div class="footer__bottom">
+        <p>© 2026 Velaria · Marchio di fantasia, progetto concept</p>
+        <a href="index.html">Torna alla home ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="profumi.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

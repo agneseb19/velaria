@@ -1,0 +1,5 @@
+# File che restano solo sul Mac (non vanno su GitHub)
+.DS_Store
+riferimenti/
+# Le PNG originali e le cartelle di lavoro: il sito usa solo le versioni leggere in img/web/
+img/**/*.png
