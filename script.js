@@ -259,10 +259,25 @@ function coloreDi(el) {
   }
   return '#F4EDE3';
 }
+// Linea fissa in fondo allo schermo (vedi .bordo-basso in style.css)
+const bordoBasso = document.createElement('div');
+bordoBasso.className = 'bordo-basso';
+bordoBasso.setAttribute('aria-hidden', 'true');
+document.body.appendChild(bordoBasso);
+
+// "rgb(230, 195, 190)" → "#e6c3be" (Safari legge meglio i colori esadecimali)
+function inEsadecimale(c) {
+  const n = c.match(/\d+(\.\d+)?/g);
+  if (!n || n.length < 3) return c;
+  return '#' + n.slice(0, 3).map((v) => Math.round(Number(v)).toString(16).padStart(2, '0')).join('');
+}
+
 function aggiornaFondo(sezione) {
-  const c = coloreDi(sezione);
+  const c = inEsadecimale(coloreDi(sezione));
   if (c === ultimoFondo) return;
   ultimoFondo = c;
+  // un'unica variabile CSS colora: fondo pagina, header e linea in basso
+  document.documentElement.style.setProperty('--fondo-pagina', c);
   document.documentElement.style.backgroundColor = c;
   document.body.style.backgroundColor = c;
   metaTema?.setAttribute('content', c);
@@ -287,12 +302,16 @@ function aggiornaHeader() {
   header.classList.toggle('is-scrolled', window.scrollY > soglia);
 }
 
+// Aggiorna header e colori al massimo una volta per fotogramma
 let headerInAttesa = false;
-window.addEventListener('scroll', () => {
+function richiediAggiornamentoHeader() {
   if (headerInAttesa) return;
   headerInAttesa = true;
   requestAnimationFrame(() => { aggiornaHeader(); headerInAttesa = false; });
-}, { passive: true });
+}
+window.addEventListener('scroll', richiediAggiornamentoHeader, { passive: true });
+// ...e un ultimo controllo quando lo scroll si ferma (es. dopo un salto lungo)
+if (window.ScrollTrigger) ScrollTrigger.addEventListener('scrollEnd', aggiornaHeader);
 
 // Menu a tutto schermo su telefono
 const bottoneMenu = document.querySelector('.header__toggle');
@@ -416,7 +435,7 @@ function iniziaHero() {
       },
       // a ogni fotogramma dell'animazione (anche mentre "rallenta" dopo lo scroll)
       // il fondo della pagina segue il colore che sta sfumando
-      onUpdate: () => { if (window.scrollY < heroSezione.offsetTop + heroSezione.offsetHeight) aggiornaFondo(stage); },
+      onUpdate: richiediAggiornamentoHeader,
     });
 
     // L'invito "Scorri per scoprire" sparisce appena inizi a scorrere

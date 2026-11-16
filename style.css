@@ -129,13 +129,17 @@ html.lenis, html.lenis body { height: auto; }
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
   padding: 22px var(--gutter);
   color: var(--ink);
-  transition: color .6s ease, background-color .6s ease, backdrop-filter .6s;
+  /* Lo sfondo dell'header è sempre il colore della sezione sotto (lo imposta script.js):
+     su iPhone Safari colora le sue barre prendendo il colore da qui. */
+  background-color: var(--fondo-pagina, transparent);
+  transition: color .6s ease;
 }
 /* Sopra una sezione scura, il testo dell'header diventa chiaro */
 .header.is-light { color: var(--light); --btn-hover-bg: var(--light); --btn-hover-ink: var(--night); }
 /* Dopo la hero l'header prende un leggero fondo sfocato per restare leggibile */
-.header.is-scrolled { background: rgba(244, 237, 227, .78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-.header.is-scrolled.is-light { background: rgba(34, 22, 15, .72); }
+/* Linea fissa sottilissima in fondo allo schermo, dello stesso colore della sezione:
+   serve a Safari su iPhone per colorare la barra in basso (non si vede). */
+.bordo-basso { position: fixed; z-index: 49; left: 0; right: 0; bottom: 0; height: 2px; background-color: var(--fondo-pagina, transparent); pointer-events: none; }
 
 .header__logo {
   font-family: var(--serif); font-weight: 500; font-size: 22px;
